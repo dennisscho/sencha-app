@@ -61,7 +61,12 @@ Ext.define('ToDo.view.ToDoEditor', {
 		var datePickerField = {
 			xtype: 'datepickerfield',
 			label: 'Date',
-			name: 'date'
+			name: 'date',
+			picker: {
+				xtype: 'datepicker',
+				yearFrom: 2015,
+				yearTo: 2030
+			}
 		};
 
 		var datePickerFieldSet = {
