@@ -65,6 +65,7 @@ Ext.define('ToDo.controller.ToDoEditorController', {
 		var currentToDo = toDoEditor.getRecord();
 		var toDoStore = Ext.getStore('ToDos');
 		toDoStore.remove(currentToDo);
+		toDoStore.sync();
 	},
 	onDeleteToDo: function(){
 		this.removeToDoFromStore();
