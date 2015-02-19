@@ -38,6 +38,8 @@ Ext.define('ToDo.controller.ToDoEditorController', {
 		var newValues = toDoEditor.getValues();
 
 		currentToDo.set('title', newValues.title);
+		currentToDo.set('description', newValues.description);
+		currentToDo.set('date', newValues.date);
 	},
 	toDoHasErrors: function() {
 		var toDoEditor = this.getToDoEditor();
