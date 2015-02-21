@@ -4,7 +4,15 @@ Ext.define('ToDo.view.Main', {
     alias: 'widget.maincontainer',
     initialize: function() {
         this.callParent(arguments);
-        //Hinzufuegen von Komponenten zur GUI.
+
+        var sortButton = {
+            xtype: 'button',
+            ui: 'action',
+            text: 'Sort',
+            handler: this.onSortButtonTap,
+            scope: this
+        };
+
         var newButton = {
             xtype: 'button',
             ui: 'action',
@@ -17,7 +25,7 @@ Ext.define('ToDo.view.Main', {
             xtype: 'toolbar',
             docked: 'top',
             title: 'ToDo',
-            items: [{
+            items: [sortButton, {
                     xtype: 'spacer'
                 },
                 newButton
@@ -48,5 +56,8 @@ Ext.define('ToDo.view.Main', {
     },
     onToDoDisclose: function(list, record, target, index, event, options) {
         this.fireEvent('toDoDisclose', this, record);
+    },
+    onSortButtonTap: function(){
+        this.fireEvent('sort', this);
     }
 });

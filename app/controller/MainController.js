@@ -1,5 +1,6 @@
 Ext.define('ToDo.controller.MainController', {
 	extend: 'Ext.app.Controller',
+	requires: 'Ext.ActionSheet',
 	config: {
 		refs: {
 			mainContainer: 'maincontainer',
@@ -10,6 +11,7 @@ Ext.define('ToDo.controller.MainController', {
 			mainContainer: {
 				newToDo: 'onNewToDo',
 				toDoDisclose: 'onToDoDisclose',
+				sort: 'onSort'
 			}
 		}
 	},
@@ -38,5 +40,38 @@ Ext.define('ToDo.controller.MainController', {
 	onToDoDisclose: function(list, record){
 		this.getToDoEditor().setRecord(record);
 		this.transitionToToDoEditor();
+	},
+	onSort: function(){
+		var sortActionSheet = Ext.create('Ext.ActionSheet', {
+			items: [{
+				text: 'Sort by priority',
+				handler: this.sortByPriority,
+				scope: this
+			}, {
+				text: 'Sort by date',
+				handler: this.sortByDate,
+				scope: this
+			},{
+				text: 'cancel',
+				ui: 'decline'
+			}],
+			defaults: {
+				listeners: {
+					tap: function(){
+						sortActionSheet.hide();
+					}
+				}
+			},
+			hidden: true
+		});
+
+		Ext.Viewport.add(sortActionSheet);
+		sortActionSheet.show();
+	},
+	sortByPriority: function(){
+		Ext.getStore('ToDos').sort('priority', 'DESC');
+	},
+	sortByDate: function(){
+		Ext.getStore('ToDos').sort('date', 'ASC');
 	}
 });
