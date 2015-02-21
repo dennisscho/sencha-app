@@ -1,7 +1,7 @@
 Ext.define('ToDo.view.ToDoEditor', {
 	extend: 'Ext.form.Panel',
 	alias: 'widget.todoeditor',
-	requires: ['Ext.form.FieldSet', 'Ext.field.DatePicker'],
+	requires: ['Ext.form.FieldSet', 'Ext.field.DatePicker', 'Ext.field.Slider'],
 	initialize: function() {
 		this.callParent(arguments);
 		//Hinzufuegen von Komponenten zur GUI
@@ -74,12 +74,21 @@ Ext.define('ToDo.view.ToDoEditor', {
 			items: [datePickerField]
 		};
 
-		this.add([topToolbar, toDoFieldSet, datePickerFieldSet, deleteButton]);
-	},
-	config: {
-		layout: {
-			align: 'center'
-		}
+		var prioritySlider = {
+			xtype: 'sliderfield',
+			value: 1,
+			minValue: 1,
+			maxValue: 10,
+			name: 'priority',
+			label: 'Priority'
+		};
+
+		var prioritySliderFieldSet = {
+			xtype: 'fieldset',
+			items: [prioritySlider]
+		};
+
+		this.add([topToolbar, toDoFieldSet, datePickerFieldSet, prioritySliderFieldSet, deleteButton]);
 	},
 	onBackButtonTap: function() {
 		this.fireEvent('backToMain', this);

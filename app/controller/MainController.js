@@ -3,12 +3,13 @@ Ext.define('ToDo.controller.MainController', {
 	config: {
 		refs: {
 			mainContainer: 'maincontainer',
-			toDoEditor: 'todoeditor'
+			toDoEditor: 'todoeditor',
+			calendar: 'todocalendar'
 		},
 		control: {
 			mainContainer: {
 				newToDo: 'onNewToDo',
-				toDoDisclose: 'onToDoDisclose'
+				toDoDisclose: 'onToDoDisclose',
 			}
 		}
 	},

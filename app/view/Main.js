@@ -36,6 +36,7 @@ Ext.define('ToDo.view.Main', {
         };
 
         this.add([topToolbar, todoList]);
+
     },
     config: {
         layout: {
